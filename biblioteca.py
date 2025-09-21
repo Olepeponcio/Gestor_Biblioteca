@@ -26,23 +26,31 @@ class Biblioteca:
 
     def busqueda(self, clave):
         match clave:
-            case str():  # si es string → buscar por titulo o autor
+            case str():
                 for item in self.lista_items:
-                    if item.titulo == clave or item.autor == clave or item.codigo == clave:
+                    if (item.titulo == clave
+                            or item.codigo == clave
+                            or any(autor.nombre_completo() == clave for autor in item.autores)
+                    ):
                         return item
-
+                return None
             case TipoItem():  # si es Enum → buscar por tipo
                 for item in self.lista_items:
                     if item.tipo == clave:
                         return item
+                return None
 
             case _:  # cualquier otro tipo → no válido
                 raise ValueError("Clave de búsqueda inválida")
-        return None
 
     def prestar_devolver(self, cod: str):
+        """Es usado por Biblioteca Manager;
+        realiza la busqueda según argumento
+        debería devolver"""
         var = self.busqueda(cod)
-        var.prestar_devolver()
+        if  var is not None:
+            var.prestar_devolver()
+        return var.es_prestado()
 
     def contar_por_tipo(self, t: TipoItem):
         """devuelve el num de item de ese tipo"""
