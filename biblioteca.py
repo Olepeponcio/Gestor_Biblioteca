@@ -25,33 +25,39 @@ class Biblioteca:
         self.lista_items.sort(key=lambda l: l.titulo)
 
     def busqueda(self, clave):
+        """Devuelve lista de items que cumplen con la clave"""
         match clave:
             case str():
-                for item in self.lista_items:
+                return [
+                    item for item in self.lista_items
                     if (item.titulo == clave
-                            or item.codigo == clave
-                            or any(autor.nombre_completo() == clave for autor in item.autores)
-                    ):
-                        return item
-                return None
-            case TipoItem():  # si es Enum → buscar por tipo
-                for item in self.lista_items:
-                    if item.tipo == clave:
-                        return item
-                return None
-
-            case _:  # cualquier otro tipo → no válido
+                        or item.codigo == clave
+                        or any(autor.nombre_completo() == clave for autor in item.autores))
+                ]
+            case TipoItem():
+                return [item for item in self.lista_items if item.tipo == clave]
+            case _:
                 raise ValueError("Clave de búsqueda inválida")
 
-    def prestar_devolver(self, cod: str):
-        """Es usado por Biblioteca Manager;
-        realiza la busqueda según argumento
-        debería devolver"""
-        var = self.busqueda(cod)
-        if  var is not None:
-            var.prestar_devolver()
-        return var.es_prestado()
+    def prestar_devolver(self, clave, accion: str):
+        """Es usado por Biblioteca Manager.
+        llama a self.busqueda(clave) e itera en la lista comprobando
+        el estado del libro y cambia según no prestado"""
+        libros = self.busqueda(clave)
+        for libro in libros:
+            if accion == "prestar":
+                if  not libro.es_prestado():
+                    libro.prestar_devolver()
+            elif accion == "devolver":
+                if libro.es_prestado():
+                    libro.prestar_devolver()
+
 
     def contar_por_tipo(self, t: TipoItem):
         """devuelve el num de item de ese tipo"""
         return len([item for item in self.lista_items if item.tipo == t])
+
+
+
+
+

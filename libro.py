@@ -7,7 +7,6 @@ class Libro(ItemBiblioteca):
     """asigna valor a sus atributos y define dos metodos de estado"""
     def __init__(self, codigo: str, titulo: str, tipoItem, autores: list):
         super().__init__(codigo, titulo, tipoItem)
-        self.numero_librs = 0
         self.prestado = False
         self.autores = autores
 
@@ -31,10 +30,13 @@ class Libro(ItemBiblioteca):
 
 
     def prestar_devolver(self):
-        self.prestado = not self.prestado
+            self.prestado = not self.prestado
 
     def es_prestado(self):
         return self.prestado
+
+
+
 
 
 
