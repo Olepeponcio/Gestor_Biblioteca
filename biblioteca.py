@@ -44,13 +44,17 @@ class Biblioteca:
         llama a self.busqueda(clave) e itera en la lista comprobando
         el estado del libro y cambia según no prestado"""
         libros = self.busqueda(clave)
-        for libro in libros:
-            if accion == "prestar":
-                if  not libro.es_prestado():
-                    libro.prestar_devolver()
-            elif accion == "devolver":
-                if libro.es_prestado():
-                    libro.prestar_devolver()
+        # comprobar que la lista no esté vacia
+        if libros:
+            for libro in libros:
+                if accion == "prestar":
+                    if  not libro.es_prestado():
+                        libro.prestar_devolver()
+                elif accion == "devolver":
+                    if libro.es_prestado():
+                        libro.prestar_devolver()
+        else:
+            return None
 
 
     def contar_por_tipo(self, t: TipoItem):

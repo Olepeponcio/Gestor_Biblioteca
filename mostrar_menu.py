@@ -12,7 +12,7 @@ def mostrar_menu_principal():
     print("[3] 🔄 Prestar / Devolver libro") # Opciones.PRESTAR_DEVOLVER = (3,)
     print("[4] 🚪 Salir")                    # Opciones.SALIR = (4,)
     print("-" * 40)
-    print("👉 Selecciona una opción:")
+    # print("👉 Selecciona una opción:")
 
 
 def mostrar_submenu_busqueda():
@@ -38,3 +38,11 @@ def mostrar_submenu_prestamos():
     print("-" * 40)
     print("[0] ⬅️  Volver al Menú Principal") # Opciones.VOLVER_MENU = (0,)
     print("-" * 40)
+
+
+def mostrar_submenu_agregar():
+    print("\n📚 Submenú AGREGAR")
+    print("1. Agregar Libro Físico")
+    print("2. Agregar Libro Digital")
+    print("3. Agregar Revista")
+    print("0. Volver al menú principal")
