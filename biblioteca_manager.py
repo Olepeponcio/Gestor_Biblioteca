@@ -56,13 +56,13 @@ class BibliotecaManager:
             Opciones.AGREGAR_REVISTA: self.gestionar_entrada_revista,
 
             # Submenú BUSCAR
-            Opciones.BUSCAR_AUTOR: lambda: self.opcion_buscar(input("introduce nombre:")),
-            Opciones.BUSCAR_TITULO: lambda: self.opcion_buscar(input("introduce titulo: ")),
-            Opciones.BUSCAR_CODIGO: lambda: self.opcion_buscar(input("introduce código: ")),
+            Opciones.BUSCAR_AUTOR: lambda: self.opcion_buscar(input("introduce nombre:").lower()),
+            Opciones.BUSCAR_TITULO: lambda: self.opcion_buscar(input("introduce titulo: ").lower()),
+            Opciones.BUSCAR_CODIGO: lambda: self.opcion_buscar(input("introduce código: ").lower()),
 
             # Submenú PRESTAR/DEVOLVER
-            Opciones.PRESTAR: lambda: self.opcion_prestar(input("Código a prestar: ")),
-            Opciones.DEVOLVER: lambda: self.opcion_devolver(input("Código a devolver: ")),
+            Opciones.PRESTAR: lambda: self.opcion_prestar(input("Código a prestar: ").lower()),
+            Opciones.DEVOLVER: lambda: self.opcion_devolver(input("Código a devolver: ").lower()),
         }
 
     # -------------------------
@@ -136,10 +136,13 @@ class BibliotecaManager:
 
         try:
             codigo = input("Código: ").strip()
+            codigo.lower()
             titulo = input("Título: ").strip()
+            codigo.lower()
 
             print("Autores (Nombre|Apellidos|Nacionalidad, separados por coma)")
             autores_str = input("> ").strip()
+            autores_str.lower()
             autores = []
             if autores_str:
                 for datos in autores_str.split(","):
@@ -152,7 +155,7 @@ class BibliotecaManager:
             # Caso especial: Revista
             if es_revista:
                 num_edi = int(input("Número de edición: ").strip())
-                periodicidad = input("Periodicidad (semanal/mensual/etc): ").strip()
+                periodicidad = input("Periodicidad (semanal/mensual/etc): ").strip().lower()
                 return Revista(codigo, titulo, tipo_item, autores, num_edi, periodicidad)
 
             # Caso general: Libro o Libro Digital → ItemBiblioteca
@@ -201,10 +204,11 @@ class BibliotecaManager:
 
     def opcion_prestar(self, clave):
         """usa buscar de la clase Biblioteca que itera en la lista de items.
-        Si el codigo está mal introducido o el libro no está lanzará un print"""
-        if self.biblioteca.prestar_devolver(clave, "prestar") is not None:
-            pass
-        else:
+        estado = True: prestado/devuelto. estado = None: no encontrado"""
+        estado = self.biblioteca.prestar_devolver(clave, "prestar")
+        if estado:
+            print("📚 Prestado/Devuelto correctamente✅")
+        elif estado is None:
             print("📚 Ningún libro encontrado con esa búsqueda.")
 
 

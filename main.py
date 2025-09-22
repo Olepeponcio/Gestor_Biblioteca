@@ -26,14 +26,14 @@ def construir_item(item_dict):
     elif aux == "REVISTA":
         tipo = TipoItem.REVISTA
 
-    codigo = item_dict["codigo"]
-    titulo = item_dict["titulo"]
-    autores = [Autor(a["nombre"], a["apellidos"], a["nacionalidad"])
+    codigo = item_dict["codigo"].lower()
+    titulo = item_dict["titulo"].lower()
+    autores = [Autor(a["nombre"].lower(), a["apellidos"].lower(), a["nacionalidad"].lower())
                for a in item_dict["autores"]]
 
     if tipo == "REVISTA":
         return Revista(codigo, titulo, tipo, autores,
-                       item_dict["num_edi"], item_dict["periodicidad"])
+                       item_dict["num_edi"], item_dict["periodicidad"].lower())
     elif tipo in TipoItem:
         # return TIPO_MAP[tipo](codigo, titulo, tipo, autores)
         return Libro(codigo, titulo, tipo, autores)

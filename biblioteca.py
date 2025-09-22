@@ -42,19 +42,25 @@ class Biblioteca:
     def prestar_devolver(self, clave, accion: str):
         """Es usado por Biblioteca Manager.
         llama a self.busqueda(clave) e itera en la lista comprobando
-        el estado del libro y cambia según no prestado"""
+        el estado del libro y cambia según no prestado
+        devuelve estado para control desde manager deberia devolver
+        True, False (libro prestado o no) y None (porque puede que el libro no esté en la lista)"""
         libros = self.busqueda(clave)
+        estado = None
         # comprobar que la lista no esté vacia
         if libros:
             for libro in libros:
                 if accion == "prestar":
                     if  not libro.es_prestado():
                         libro.prestar_devolver()
+                        estado = True
                 elif accion == "devolver":
                     if libro.es_prestado():
                         libro.prestar_devolver()
-        else:
-            return None
+                        estado = True
+                else:
+                    estado = None
+            return estado
 
 
     def contar_por_tipo(self, t: TipoItem):

@@ -12,7 +12,7 @@
     "codigo": "L002",
     "titulo": "Cien Años de Soledad",
     "autores": [
-      {"nombre": "Gabriel", "apellidos": "García Márquez", "nacionalidad": "Colombiana"}
+      {"nombre": "Gabriel", "apellidos": "Garcia Marquez", "nacionalidad": "Colombiana"}
     ]
   },
   {
@@ -46,7 +46,7 @@
     "codigo": "R002",
     "titulo": "Muy Interesante",
     "autores": [
-      {"nombre": "Redacción", "apellidos": "Editorial", "nacionalidad": "Española"}
+      {"nombre": "Redaccion", "apellidos": "Editorial", "nacionalidad": "Española"}
     ],
     "num_edi": 350,
     "periodicidad": "Mensual"
