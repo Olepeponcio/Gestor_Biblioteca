@@ -15,7 +15,7 @@ class Libro(ItemBiblioteca):
                 autor.libros.append(self)
             except AttributeError:
                 # Si el autor no tiene lista de libros, la creamos
-                # autor.libros = [self]
+                autor.libros = [self]
                 print ("Algo salió mal añadiendo el libro a la lista")
 
 
