@@ -22,7 +22,7 @@ def mostrar_submenu_busqueda():
     print("=" * 40)
     print("[1] Buscar por Autor")   # Opciones.BUSCAR_AUTOR = (2,1)
     print("[2] Buscar por Título")  # Opciones.BUSCAR_TITULO = (2,2)
-    print("[3] Buscar por Tipo")    # Opciones.BUSCAR_TIPO = (2,3)
+    print("[3] Buscar por Codigo")    # Opciones.BUSCAR_TIPO = (2,3)
     print("-" * 40)
     print("[0] ⬅️  Volver al Menú Principal") # Opciones.VOLVER_MENU = (0,)
     print("-" * 40)

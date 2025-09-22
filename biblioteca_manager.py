@@ -16,9 +16,9 @@ from enum import Enum
 class Opciones(Enum):
     # Menú principal
     MENU = (0,)
-    AGREGAR = (1,)
 
     # Submenú AGREGAR
+    AGREGAR = (1,)
     AGREGAR_LIBRO = (1, 1)
     AGREGAR_LIBRO_DIGITAL = (1, 2)
     AGREGAR_REVISTA = (1, 3)
@@ -27,7 +27,7 @@ class Opciones(Enum):
     BUSCAR = (2,)
     BUSCAR_AUTOR = (2, 1)
     BUSCAR_TITULO = (2, 2)
-    BUSCAR_TIPO = (2, 3)
+    BUSCAR_CODIGO = (2, 3)
 
     PRESTAR_DEVOLVER = (3,)
     PRESTAR = (3, 1)
@@ -56,9 +56,9 @@ class BibliotecaManager:
             Opciones.AGREGAR_REVISTA: self.gestionar_entrada_revista,
 
             # Submenú BUSCAR
-            Opciones.BUSCAR_AUTOR: lambda: self.opcion_buscar("autor"),
-            Opciones.BUSCAR_TITULO: lambda: self.opcion_buscar("titulo"),
-            Opciones.BUSCAR_TIPO: lambda: self.opcion_buscar("tipo"),
+            Opciones.BUSCAR_AUTOR: lambda: self.opcion_buscar(input("introduce nombre:")),
+            Opciones.BUSCAR_TITULO: lambda: self.opcion_buscar(input("introduce titulo: ")),
+            Opciones.BUSCAR_CODIGO: lambda: self.opcion_buscar(input("introduce código: ")),
 
             # Submenú PRESTAR/DEVOLVER
             Opciones.PRESTAR: lambda: self.opcion_prestar(input("Código a prestar: ")),
@@ -187,14 +187,17 @@ class BibliotecaManager:
             print("✅ Libro agregado.")
 
     def opcion_buscar(self, clave):
+        """la funcion es llamada desde el diccionario despacho de acciones"""
         if not self.biblioteca.lista_items:  # asumiendo que biblioteca guarda los libros en .items
             print("📭 No hay libros en la biblioteca.")
-            return
         resultado = self.biblioteca.busqueda(clave)
         if not resultado:
             print("📚 Ningún libro encontrado con esa búsqueda.")
         else:
-            print(resultado)
+            print(resultado[0].__str__())
+
+
+
 
     def opcion_prestar(self, clave):
         """usa buscar de la clase Biblioteca que itera en la lista de items.

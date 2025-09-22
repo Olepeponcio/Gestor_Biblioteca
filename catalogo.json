@@ -1,0 +1,54 @@
+[
+  {
+    "tipo": "FISICO",
+    "codigo": "L001",
+    "titulo": "El Quijote",
+    "autores": [
+      {"nombre": "Miguel", "apellidos": "de Cervantes", "nacionalidad": "Española"}
+    ]
+  },
+  {
+    "tipo": "FISICO",
+    "codigo": "L002",
+    "titulo": "Cien Años de Soledad",
+    "autores": [
+      {"nombre": "Gabriel", "apellidos": "García Márquez", "nacionalidad": "Colombiana"}
+    ]
+  },
+  {
+    "tipo": "DIGITAL",
+    "codigo": "D001",
+    "titulo": "Python 101",
+    "autores": [
+      {"nombre": "Michael", "apellidos": "Driscoll", "nacionalidad": "Estadounidense"}
+    ]
+  },
+  {
+    "tipo": "DIGITAL",
+    "codigo": "D002",
+    "titulo": "Clean Code",
+    "autores": [
+      {"nombre": "Robert", "apellidos": "Martin", "nacionalidad": "Estadounidense"}
+    ]
+  },
+  {
+    "tipo": "REVISTA",
+    "codigo": "R001",
+    "titulo": "National Geographic",
+    "autores": [
+      {"nombre": "Varios", "apellidos": "Autores", "nacionalidad": "Internacional"}
+    ],
+    "num_edi": 202,
+    "periodicidad": "Mensual"
+  },
+  {
+    "tipo": "REVISTA",
+    "codigo": "R002",
+    "titulo": "Muy Interesante",
+    "autores": [
+      {"nombre": "Redacción", "apellidos": "Editorial", "nacionalidad": "Española"}
+    ],
+    "num_edi": 350,
+    "periodicidad": "Mensual"
+  }
+]
