@@ -15,7 +15,7 @@ from enum import Enum
 
 class Opciones(Enum):
     # Menú principal
-    MENU = (1,)
+    MENU = (0,)
     AGREGAR = (1,)
 
     # Submenú AGREGAR
